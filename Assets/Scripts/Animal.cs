@@ -9,7 +9,7 @@ public class Animal : MonoBehaviour
     protected float HP;
     protected float maxHP = 100;
 
-    private bool isPlayer;
+    public bool isPlayer;
     private Vector3 currentVelocity;
     protected float speed = 10.0f;
     private float decaySpeed;
@@ -28,17 +28,19 @@ public class Animal : MonoBehaviour
     void Update()
     {
         Decay();
-        if (!isPlayer)
-        {
-            Move();
-        }
+        Move();
     }
 
     protected virtual void Initialize()
     {
         animalName = gameObject.name;
         HP = maxHP;
-        decaySpeed = maxHP / 20;
+        decaySpeed = 2;
+    }
+
+    public void SetVelocity(Vector3 velocity)
+    {
+        currentVelocity = velocity * speed;
     }
 
     private void Move()
