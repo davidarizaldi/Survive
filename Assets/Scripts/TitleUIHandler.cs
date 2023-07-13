@@ -31,8 +31,6 @@ public class TitleUIHandler : MonoBehaviour
     {
         MainManager.Instance.animalIndex = animalIndex;
 
-        Debug.Log(MainManager.Instance.playerName);
-        Debug.Log(MainManager.Instance.animalIndex);
         SceneManager.LoadScene(1);
     }
 
