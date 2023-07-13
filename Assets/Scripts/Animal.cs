@@ -5,7 +5,7 @@ using UnityEngine;
 public class Animal : MonoBehaviour
 {
     protected string animalName;
-    protected int animalType;
+    protected int animalType;       // 1 = rabbit, 2 = fox, 3 = bear
     protected float HP;
     protected float maxHP = 100;
 
@@ -72,9 +72,30 @@ public class Animal : MonoBehaviour
         }
     }
 
-    protected virtual void OnCollisionEnter(Collision collision)
+    protected void OnCollisionEnter(Collision collision)
     {
+        Eat(collision);
+        
         InvertOnEdge(collision);
+    }
+
+    protected virtual void Eat(Collision collision)
+    {
+        Animal animal = collision.gameObject.GetComponent<Animal>();
+        if (animal == null) return;
+
+        if (animal.animalType < animalType)
+        {
+            if (animal.HP < 0.25f * animal.maxHP)
+            {
+                HP += 0.25f * animal.maxHP;
+            }
+            else
+            {
+                HP += animal.HP;
+            }
+            Destroy(collision.gameObject);
+        }
     }
 
     private void InvertOnEdge(Collision collision)
