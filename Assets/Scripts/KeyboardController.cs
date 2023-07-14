@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class KeyboardController : MonoBehaviour
 {
-    private Animal player;
     private bool moveUp;
     private bool moveLeft;
     private bool moveDown;
     private bool moveRight;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Animal>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -66,6 +59,6 @@ public class KeyboardController : MonoBehaviour
     {
         float XAxis =  (moveRight ? 1 : 0) + (moveLeft ? 1 : 0) * -1;
         float YAxis = (moveUp ? 1 : 0) + (moveDown ? 1 : 0) * -1;
-        player.SetVelocity(new Vector3(XAxis, 0, YAxis));
+        GameManager.playerObject.SetVelocity(new Vector3(XAxis, 0, YAxis));
     }
 }

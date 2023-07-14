@@ -123,7 +123,7 @@ public class Animal : MonoBehaviour
     {
         if (isPlayer)
         {
-
+            GameManager.isAlive = false;
         }
     }
 }
