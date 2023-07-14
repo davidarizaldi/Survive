@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class CamFollowPlayer : MonoBehaviour
 {
-    GameObject player;
-    private Vector3 cameraHeight = new Vector3(0, 20, 0);
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
+    private Vector3 cameraHeight = new(0, 20, 0);
 
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = player.transform.position + cameraHeight;
+        if (GameManager.isAlive)
+        {
+            transform.position = GameManager.playerObject.transform.position + cameraHeight;
+        }
     }
 }
