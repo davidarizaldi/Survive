@@ -29,7 +29,7 @@ public class TitleUIHandler : MonoBehaviour
 
     public void StartGame(int animalIndex)
     {
-        MainManager.Instance.animalIndex = animalIndex;
+        MainManager.animalIndex = animalIndex;
 
         SceneManager.LoadScene(1);
     }
@@ -46,11 +46,11 @@ public class TitleUIHandler : MonoBehaviour
     {
         if (string.IsNullOrEmpty(name))
         {
-            MainManager.Instance.playerName = "Anon";
+            MainManager.playerName = "Anon";
         }
         else
         {
-            MainManager.Instance.playerName = Truncate(name, 10);
+            MainManager.playerName = Truncate(name, 15);
         }
     }
 

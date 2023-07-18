@@ -5,15 +5,15 @@ using UnityEngine;
 public class Animal : MonoBehaviour
 {
     protected string animalName;
-    protected int animalType;       // 1 = rabbit, 2 = fox, 3 = bear
-    protected float HP;
-    protected float maxHP = 100;
+    protected int animalType;       // 0 = rabbit, 1 = fox, 2 = bear
+    [HideInInspector] public float HP;
+    [HideInInspector] public float maxHP = 100;       // 0 = 20, 1 = 80, 2 = 320
 
-    public bool isPlayer;
+    [HideInInspector] public bool isPlayer;
     private Vector3 currentVelocity;
     protected float speed = 10.0f;
     private float decaySpeed;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +68,10 @@ public class Animal : MonoBehaviour
         HP -= decaySpeed * Time.deltaTime;
         if (HP <= 0)
         {
+            if (isPlayer)
+            {
+                GameManager.GameOver();
+            }
             Destroy(gameObject);
         }
     }
@@ -79,7 +83,7 @@ public class Animal : MonoBehaviour
         InvertOnEdge(collision);
     }
 
-    protected virtual void Eat(Collision collision)
+    protected void Eat(Collision collision)
     {
         Animal animal = collision.gameObject.GetComponent<Animal>();
         if (animal == null) return;
@@ -93,6 +97,10 @@ public class Animal : MonoBehaviour
             else
             {
                 HP += animal.HP;
+            }
+            if (HP > maxHP)
+            {
+                HP = maxHP;
             }
             Destroy(collision.gameObject);
         }

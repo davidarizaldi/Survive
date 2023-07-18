@@ -6,7 +6,7 @@ public class Rabbit : Animal
 {
     protected override void Initialize()
     {
-        animalType = 1;
+        animalType = 0;
         maxHP = 20;
         speed = 15;
         base.Initialize();

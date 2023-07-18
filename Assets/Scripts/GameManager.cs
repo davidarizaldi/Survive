@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         spawner = new();
-        SpawnPlayer("Player1", 1);
+        SpawnPlayer(MainManager.playerName, MainManager.animalIndex);
     }
 
     // Update is called once per frame
@@ -42,5 +42,10 @@ public class GameManager : MonoBehaviour
         playerObject = Instantiate(animalPrefabs[playerIndex], randomPos, animalPrefabs[playerIndex].transform.rotation).GetComponent<Animal>();
         playerObject.isPlayer = true;
         isAlive = true;
+    }
+
+    public static void GameOver()
+    {
+
     }
 }

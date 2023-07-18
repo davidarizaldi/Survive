@@ -6,12 +6,11 @@ public class MainManager : MonoBehaviour
 {
     public static MainManager Instance { get; private set; }
 
-    public string playerName;
-    public int animalIndex;
+    public static string playerName = "Anon";
+    public static int animalIndex = 1;
 
     private void Awake()
     {
-        playerName = "Anon";
         if (Instance != null)
         {
             Destroy(gameObject);

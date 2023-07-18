@@ -785,8 +785,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960ac6fb68ddc9349859014a53e94400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
-  animalIndex: 0
 --- !u!4 &663342350
 Transform:
   m_ObjectHideFlags: 0
@@ -1496,7 +1494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1362203940
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2163,7 +2161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1612217407
 RectTransform:
   m_ObjectHideFlags: 0

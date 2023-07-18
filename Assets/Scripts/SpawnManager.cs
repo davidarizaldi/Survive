@@ -12,9 +12,16 @@ public class SpawnManager : MonoBehaviour
     {
         animalPrefabs = GameManager.animalPrefabs;
 
+        for (int i = 0; i < 32; i++)
+        {
+            SpawnRabbit();
+            if (i % 4 == 0) SpawnFox();
+            if (i % 16 == 0) SpawnBear();
+        }
+
         InvokeRepeating(nameof(SpawnRabbit), 1, 1);
-        InvokeRepeating(nameof(SpawnFox), 2, 2);
-        InvokeRepeating(nameof(SpawnBear), 5, 5);
+        InvokeRepeating(nameof(SpawnFox), 4, 4);
+        InvokeRepeating(nameof(SpawnBear), 16, 16);
     }
 
     void SpawnRabbit()
