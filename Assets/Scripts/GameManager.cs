@@ -23,17 +23,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawner = new();
+        spawner = gameObject.AddComponent<SpawnManager>();
+        spawner.SpawnRepeat();
         SpawnPlayer(MainManager.playerName, MainManager.animalIndex);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SpawnPlayer(string playerName, int playerIndex)
+    public static void SpawnPlayer(string playerName, int playerIndex)
     {
         GameManager.playerName = playerName;
         GameManager.playerIndex = playerIndex;
@@ -42,10 +37,18 @@ public class GameManager : MonoBehaviour
         playerObject = Instantiate(animalPrefabs[playerIndex], randomPos, animalPrefabs[playerIndex].transform.rotation).GetComponent<Animal>();
         playerObject.isPlayer = true;
         isAlive = true;
+        TimeUI.ResetTime();
+        HudUIHandler.HideGameOver();
+        if (playerIndex == 0)
+        {
+            HudUIHandler.Instance.ShowTip();
+        }
     }
 
     public static void GameOver()
     {
+        isAlive = false;
 
+        HudUIHandler.ShowGameOver();
     }
 }

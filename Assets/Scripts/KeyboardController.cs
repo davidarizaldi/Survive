@@ -53,6 +53,16 @@ public class KeyboardController : MonoBehaviour
             moveRight = true;
             UpdateMovement();
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && !GameManager.isAlive)
+        {
+            GameManager.SpawnPlayer(MainManager.playerName, MainManager.animalIndex);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.playerObject.isPlayer = false;
+            HudUIHandler.BackToMenu();
+        }
     }
 
     void UpdateMovement()

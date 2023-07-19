@@ -7,7 +7,7 @@ public class Bear : Animal
     protected override void Initialize()
     {
         animalType = 2;
-        maxHP = 320;
+        maxHP = 180;
         speed = 7.5f;
         base.Initialize();
     }

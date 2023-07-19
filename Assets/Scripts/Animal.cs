@@ -7,12 +7,12 @@ public class Animal : MonoBehaviour
     protected string animalName;
     protected int animalType;       // 0 = rabbit, 1 = fox, 2 = bear
     [HideInInspector] public float HP;
-    [HideInInspector] public float maxHP = 100;       // 0 = 20, 1 = 80, 2 = 320
+    [HideInInspector] public float maxHP = 60;       // 0 = 20, 1 = 60, 2 = 180
 
     [HideInInspector] public bool isPlayer;
-    private Vector3 currentVelocity;
+    protected Vector3 currentVelocity;
     protected float speed = 10.0f;
-    private float decaySpeed;
+    protected const float decaySpeed = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class Animal : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         Decay();
         Move();
@@ -35,7 +35,6 @@ public class Animal : MonoBehaviour
     {
         animalName = gameObject.name;
         HP = maxHP;
-        decaySpeed = 2;
     }
 
     public void SetVelocity(Vector3 velocity)
@@ -43,12 +42,12 @@ public class Animal : MonoBehaviour
         currentVelocity = velocity * speed;
     }
 
-    private void Move()
+    void Move()
     {
         transform.position = transform.position + currentVelocity * Time.deltaTime;
     }
 
-    private void PickNewVelocity()
+    protected virtual void PickNewVelocity()
     {
         currentVelocity = Random.insideUnitSphere;
         currentVelocity.y = 0;
@@ -63,15 +62,11 @@ public class Animal : MonoBehaviour
         StartCoroutine(ChangeVelocityRoutine());
     }
 
-    private void Decay()
+    void Decay()
     {
         HP -= decaySpeed * Time.deltaTime;
         if (HP <= 0)
         {
-            if (isPlayer)
-            {
-                GameManager.GameOver();
-            }
             Destroy(gameObject);
         }
     }
@@ -106,7 +101,7 @@ public class Animal : MonoBehaviour
         }
     }
 
-    private void InvertOnEdge(Collision collision)
+    void InvertOnEdge(Collision collision)
     {
         if (collision.gameObject.name == "Left Wall" && currentVelocity.x < 0)
         {
@@ -127,11 +122,11 @@ public class Animal : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    void OnDestroy()
     {
         if (isPlayer)
         {
-            GameManager.isAlive = false;
+            GameManager.GameOver();
         }
     }
 }

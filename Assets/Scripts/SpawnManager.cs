@@ -11,17 +11,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         animalPrefabs = GameManager.animalPrefabs;
-
-        for (int i = 0; i < 32; i++)
-        {
-            SpawnRabbit();
-            if (i % 4 == 0) SpawnFox();
-            if (i % 16 == 0) SpawnBear();
-        }
-
-        InvokeRepeating(nameof(SpawnRabbit), 1, 1);
-        InvokeRepeating(nameof(SpawnFox), 4, 4);
-        InvokeRepeating(nameof(SpawnBear), 16, 16);
+        SpawnMultiple(32);
     }
 
     void SpawnRabbit()
@@ -40,5 +30,22 @@ public class SpawnManager : MonoBehaviour
     {
         Vector3 randomPos = new(Random.Range(-areaSize, areaSize), 0.5f, Random.Range(-areaSize, areaSize));
         Instantiate(animalPrefabs[2], randomPos, animalPrefabs[2].transform.rotation);
+    }
+
+    public void SpawnRepeat()
+    {
+        InvokeRepeating(nameof(SpawnRabbit), 1, 1);
+        InvokeRepeating(nameof(SpawnFox), 4, 4);
+        InvokeRepeating(nameof(SpawnBear), 16, 16);
+    }
+
+    public void SpawnMultiple(int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            SpawnRabbit();
+            if (i % 4 == 0) SpawnFox();
+            if (i % 16 == 0) SpawnBear();
+        }
     }
 }
