@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rabbit : Animal
+public class Rabbit : Animal    // INHERITANCE
 {
-    protected override void Update()
+    protected override void Update()    // POLYMORPHISM
     {
         Regenerate();
         base.Update();
     }
 
-    protected override void Initialize()
+    protected override void Initialize()    // POLYMORPHISM
     {
         animalType = 0;
         maxHP = 20;
@@ -18,7 +18,7 @@ public class Rabbit : Animal
         base.Initialize();
     }
 
-    protected override void PickNewVelocity()
+    protected override void PickNewVelocity()   // POLYMORPHISM
     {
         if (Random.value < 0.7f && HP > 0.1f * maxHP)
         {

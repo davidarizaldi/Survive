@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fox : Animal
+public class Fox : Animal   // INHERITANCE
 {
-    protected override void Initialize()
+    protected override void Initialize()    // POLYMORPHISM
     {
         animalType = 1;
         maxHP = 60;
@@ -12,7 +12,7 @@ public class Fox : Animal
         base.Initialize();
     }
 
-    protected override void PlayEatSound(int eatenIndex)
+    protected override void PlayEatSound(int eatenIndex)    // POLYMORPHISM
     {
         eatSFX.Play();
     }

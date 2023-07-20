@@ -4,10 +4,11 @@ using UnityEngine;
 
 public abstract class Animal : MonoBehaviour
 {
-    protected string animalName;
-    protected int animalType;       // 0 = rabbit, 1 = fox, 2 = bear
-    [HideInInspector] public float HP;
-    [HideInInspector] public float maxHP = 60;       // 0 = 20, 1 = 60, 2 = 180
+    // ENCAPSULATION
+    public string animalName { get; protected set; }
+    public int animalType { get; protected set; }           // 0 = rabbit, 1 = fox, 2 = bear
+    public float HP { get; protected set; }
+    public float maxHP { get; protected set; } = 60;        // 0 = 20, 1 = 60, 2 = 180
 
     [HideInInspector] public bool isPlayer;
     protected Vector3 currentVelocity;
@@ -117,7 +118,7 @@ public abstract class Animal : MonoBehaviour
         }
     }
 
-    protected abstract void PlayEatSound(int eatenIndex);
+    protected abstract void PlayEatSound(int eatenIndex);   // ABSTRACTION
 
     void InvertOnEdge(Collision collision)
     {
