@@ -8,6 +8,7 @@ public class HudUIHandler : MonoBehaviour
 {
     [SerializeField] private GameObject healthBarObject;
     //[SerializeField] private GameObject energyBarObject;
+    private static readonly float[] maxHealths = { 20.0f, 60.0f, 120.0f };
     [SerializeField] private TMP_Text nameText;
     private static GameObject popupUI;
     [SerializeField] private GameObject _popupUI;
@@ -32,7 +33,7 @@ public class HudUIHandler : MonoBehaviour
         
         healthBar = healthBarObject.transform.GetComponent<BarUI>();
         //energyBar = energyBarObject.transform.GetComponent<BarUI>();
-        healthBar.SetMaxValue(20 * Mathf.Pow(3, MainManager.animalIndex));
+        healthBar.SetMaxValue(maxHealths[MainManager.animalIndex]);
     }
 
     // Update is called once per frame

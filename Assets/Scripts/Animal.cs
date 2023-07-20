@@ -14,6 +14,8 @@ public class Animal : MonoBehaviour
     protected float speed = 10.0f;
     protected const float decaySpeed = 2;
 
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,7 @@ public class Animal : MonoBehaviour
     {
         animalName = gameObject.name;
         HP = maxHP;
+        anim = GetComponent<Animator>();
     }
 
     public void SetVelocity(Vector3 velocity)
@@ -44,6 +47,16 @@ public class Animal : MonoBehaviour
 
     void Move()
     {
+        if (currentVelocity != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(currentVelocity), 0.15f);
+            anim.SetInteger("Walk", 1);
+        }
+        else
+        {
+            anim.SetInteger("Walk", 0);
+        }
+
         transform.position = transform.position + currentVelocity * Time.deltaTime;
     }
 

@@ -14,7 +14,7 @@ public class Rabbit : Animal
     {
         animalType = 0;
         maxHP = 20;
-        speed = 15;
+        speed = 12.5f;
         base.Initialize();
     }
 

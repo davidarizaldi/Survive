@@ -34,11 +34,12 @@ public class GameManager : MonoBehaviour
         GameManager.playerIndex = playerIndex;
         
         Vector3 randomPos = new(Random.Range(-areaSize, areaSize), 0.5f, Random.Range(-areaSize, areaSize));
-        playerObject = Instantiate(animalPrefabs[playerIndex], randomPos, animalPrefabs[playerIndex].transform.rotation).GetComponent<Animal>();
+        playerObject = Instantiate(animalPrefabs[playerIndex], randomPos, animalPrefabs[playerIndex].transform.rotation).GetComponentInChildren<Animal>();
         playerObject.isPlayer = true;
         isAlive = true;
         TimeUI.ResetTime();
         HudUIHandler.HideGameOver();
+        CamFollowPlayer.ChangeHeight();
         if (playerIndex == 0)
         {
             HudUIHandler.Instance.ShowTip();

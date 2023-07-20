@@ -35,8 +35,8 @@ public class SpawnManager : MonoBehaviour
     public void SpawnRepeat()
     {
         InvokeRepeating(nameof(SpawnRabbit), 1, 1);
-        InvokeRepeating(nameof(SpawnFox), 4, 4);
-        InvokeRepeating(nameof(SpawnBear), 16, 16);
+        InvokeRepeating(nameof(SpawnFox), 6, 6);
+        InvokeRepeating(nameof(SpawnBear), 24, 24);
     }
 
     public void SpawnMultiple(int number)
@@ -44,8 +44,8 @@ public class SpawnManager : MonoBehaviour
         for (int i = 0; i < number; i++)
         {
             SpawnRabbit();
-            if (i % 4 == 0) SpawnFox();
-            if (i % 16 == 0) SpawnBear();
+            if (i % 6 == 0) SpawnFox();
+            if (i % 24 == 0) SpawnBear();
         }
     }
 }
