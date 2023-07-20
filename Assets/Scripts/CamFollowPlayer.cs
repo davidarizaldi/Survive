@@ -17,7 +17,7 @@ public class CamFollowPlayer : MonoBehaviour
     {
         if (GameManager.isAlive)
         {
-            transform.position = GameManager.playerObject.transform.position + cameraHeight;
+            transform.position = GameManager.playerAnimalObj.transform.position + cameraHeight;
         }
     }
 

@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
 
     private SpawnManager spawner;
 
-    [HideInInspector] public static Animal playerObject;
+    [HideInInspector] public static GameObject playerObject;
+    [HideInInspector] public static Animal playerAnimalObj;
     [HideInInspector] public static string playerName;
     [HideInInspector] public static int playerIndex;
     [HideInInspector] public static bool isAlive;
@@ -34,8 +35,9 @@ public class GameManager : MonoBehaviour
         GameManager.playerIndex = playerIndex;
         
         Vector3 randomPos = new(Random.Range(-areaSize, areaSize), 0.5f, Random.Range(-areaSize, areaSize));
-        playerObject = Instantiate(animalPrefabs[playerIndex], randomPos, animalPrefabs[playerIndex].transform.rotation).GetComponentInChildren<Animal>();
-        playerObject.isPlayer = true;
+        playerObject = Instantiate(animalPrefabs[playerIndex], randomPos, animalPrefabs[playerIndex].transform.rotation);
+        playerAnimalObj = playerObject.GetComponentInChildren<Animal>();
+        playerAnimalObj.isPlayer = true;
         isAlive = true;
         TimeUI.ResetTime();
         HudUIHandler.HideGameOver();

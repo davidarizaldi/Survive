@@ -60,7 +60,7 @@ public class KeyboardController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GameManager.playerObject.isPlayer = false;
+            GameManager.playerAnimalObj.isPlayer = false;
             HudUIHandler.BackToMenu();
         }
     }
@@ -69,6 +69,6 @@ public class KeyboardController : MonoBehaviour
     {
         float XAxis =  (moveRight ? 1 : 0) + (moveLeft ? 1 : 0) * -1;
         float YAxis = (moveUp ? 1 : 0) + (moveDown ? 1 : 0) * -1;
-        GameManager.playerObject.SetVelocity(new Vector3(XAxis, 0, YAxis));
+        GameManager.playerAnimalObj.SetVelocity(new Vector3(XAxis, 0, YAxis));
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Animal : MonoBehaviour
+public abstract class Animal : MonoBehaviour
 {
     protected string animalName;
     protected int animalType;       // 0 = rabbit, 1 = fox, 2 = bear
@@ -14,7 +14,8 @@ public class Animal : MonoBehaviour
     protected float speed = 10.0f;
     protected const float decaySpeed = 2;
 
-    Animator anim;
+    private Animator anim;
+    protected AudioSource eatSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class Animal : MonoBehaviour
         animalName = gameObject.name;
         HP = maxHP;
         anim = GetComponent<Animator>();
+        eatSFX = GetComponent<AudioSource>();
     }
 
     public void SetVelocity(Vector3 velocity)
@@ -98,6 +100,7 @@ public class Animal : MonoBehaviour
 
         if (animal.animalType < animalType)
         {
+            PlayEatSound(animal.animalType);
             if (animal.HP < 0.25f * animal.maxHP)
             {
                 HP += 0.25f * animal.maxHP;
@@ -113,6 +116,8 @@ public class Animal : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
+    protected abstract void PlayEatSound(int eatenIndex);
 
     void InvertOnEdge(Collision collision)
     {

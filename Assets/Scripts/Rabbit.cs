@@ -37,4 +37,9 @@ public class Rabbit : Animal
             HP += 1.5f * decaySpeed * Time.deltaTime;
         }
     }
+
+    protected override void PlayEatSound(int eatenIndex)
+    {
+        
+    }
 }

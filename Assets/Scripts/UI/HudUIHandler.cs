@@ -44,7 +44,7 @@ public class HudUIHandler : MonoBehaviour
 
     void UpdateBar(BarUI bar)
     {
-        bar.SetValue(GameManager.playerObject.HP);
+        bar.SetValue(GameManager.playerAnimalObj.HP);
     }
 
     public void ShowTip()

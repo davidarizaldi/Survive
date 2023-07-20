@@ -11,4 +11,12 @@ public class Bear : Animal
         speed = 7.5f;
         base.Initialize();
     }
+
+    protected override void PlayEatSound(int eatenIndex)
+    {
+        if (animalType - eatenIndex < 2)
+        {
+            eatSFX.Play();
+        }
+    }
 }

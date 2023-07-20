@@ -11,4 +11,9 @@ public class Fox : Animal
         speed = 10;
         base.Initialize();
     }
+
+    protected override void PlayEatSound(int eatenIndex)
+    {
+        eatSFX.Play();
+    }
 }
